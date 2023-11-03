@@ -1,0 +1,3 @@
+[submodule "StructuredRegex"]
+	path = StructuredRegex
+	url = https://github.com/saujasv/StructuredRegex
