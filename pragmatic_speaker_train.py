@@ -1,5 +1,4 @@
 from pragmatic_speaker import main
-import wandb
 
 if __name__ == "__main__":
     import sys
@@ -8,7 +7,7 @@ if __name__ == "__main__":
         {
             "listeners": [
                 { 
-                    "model_path": "listener-suffix-idx-300k",
+                    "model_path": "pragmatic-programs/listener-suffix-idx-300k",
                     "trainable": True, 
                     "save_path": f"working-s0=250-s1=250-l0=250-l1=250-ntpr=5120-nr=1-s=10-init-all/listener", 
                     "gen_config": {
@@ -39,7 +38,7 @@ if __name__ == "__main__":
                     "inference_batch_size": 4,
                 },
                 { 
-                    "model_path": "listener-suffix-idx-300k",
+                    "model_path": "pragmatic-programs/listener-suffix-idx-300k",
                     "trainable": False,
                     "gen_config": {
                         "do_sample": True,
@@ -61,7 +60,7 @@ if __name__ == "__main__":
             "speakers": [
                 {
                     "type": "std",
-                    "model_path": "speaker-prefix-idx-300k",
+                    "model_path": "pragmatic-programs/speaker-prefix-idx-300k",
                     "trainable": True, 
                     "save_path": f"working-s0=250-s1=250-l0=250-l1=250-ntpr=5120-nr=1-s=10-init-all/speaker", 
                     "gen_config": {
@@ -91,7 +90,7 @@ if __name__ == "__main__":
                 },
                 {
                     "type": "std",
-                    "model_path": "speaker-prefix-idx-300k",
+                    "model_path": "pragmatic-programs/speaker-prefix-idx-300k",
                     "trainable": False,
                     "gen_config": {
                         "do_sample": True,
@@ -124,8 +123,6 @@ if __name__ == "__main__":
             "utterance_from_gt": True,
         },
 ]
-
-    wandb.init(project="pragmatic-regex", config=args[int(sys.argv[1])])
 
     print(args[int(sys.argv[1])])
     main({**args[int(sys.argv[1])], "num_workers": 16})

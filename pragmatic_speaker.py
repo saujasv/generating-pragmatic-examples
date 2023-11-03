@@ -2,7 +2,7 @@ from collections import defaultdict
 from utils import consistent
 import os
 from tqdm import tqdm
-import wandb
+# import wandb
 import numpy as np
 from agents import Listener, Speaker, JointMoESpeaker
 from pathlib import Path
@@ -153,7 +153,7 @@ def main(config):
                 str(Path(config["working_directory"]) / f"user-validation-contexts-{speaker.name}.tsv")
                 ]})
 
-        wandb.log({f"outer_loop/{speaker.name}_user_validation_loss": loss["user_validation"], f"{speaker.name}_step": speaker.step})
+        # wandb.log({f"outer_loop/{speaker.name}_user_validation_loss": loss["user_validation"], f"{speaker.name}_step": speaker.step})
     
     for listener in listeners:
         listener.write_formatted_training_data(
@@ -175,7 +175,7 @@ def main(config):
                 str(Path(config["working_directory"]) / f"user-validation-contexts-{listener.name}.tsv")
                 ]})
 
-        wandb.log({f"outer_loop/{listener.name}_user_validation_loss": loss["user_validation"], f"{listener.name}_step": listener.step})
+        # wandb.log({f"outer_loop/{listener.name}_user_validation_loss": loss["user_validation"], f"{listener.name}_step": listener.step})
 
     with open(config["path_to_targets"]) as f:
         program_pool = [line.strip('\n') for line in f]
@@ -390,10 +390,10 @@ def main(config):
                     "user_validation": str(Path(config["working_directory"]) / f"user-validation-contexts-{speaker.name}.tsv"),
                 })
 
-            wandb.log({
-                f"outer_loop/{speaker.name}_user_validation_loss": loss["user_validation"], 
-                f"{speaker.name}_step": speaker.step
-                })
+            # wandb.log({
+            #     f"outer_loop/{speaker.name}_user_validation_loss": loss["user_validation"], 
+            #     f"{speaker.name}_step": speaker.step
+            #     })
 
         logging.info(f"TRAINING LISTENERS") 
         for idx, listener in enumerate(listeners):
@@ -447,7 +447,7 @@ def main(config):
                     "user_validation": str(Path(config["working_directory"]) / f"user-validation-contexts-{listener.name}.tsv"),
                 })
 
-            wandb.log({
-                f"outer_loop/{listener.name}_user_validation_loss": loss["user_validation"], 
-                f"{listener.name}_step": listener.step
-                })
+            # wandb.log({
+            #     f"outer_loop/{listener.name}_user_validation_loss": loss["user_validation"], 
+            #     f"{listener.name}_step": listener.step
+            #     })
